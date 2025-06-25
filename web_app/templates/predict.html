@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Student Performance Prediction</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="container">
+    <h2>Student Performance Prediction</h2>
+
+    <form action="http://localhost:5000/predict" method="POST">
+      <label>Attendance (%)</label>
+      <input type="number" name="attendance" required />
+
+      <label>Internal Marks (%)</label>
+      <input type="number" name="internals" required />
+
+      <button type="submit">Predict</button>
+    </form>
+  </div>
+
+  <footer>
+    &copy; 2025 Student Predictor System
+  </footer>
+</body>
+</html>

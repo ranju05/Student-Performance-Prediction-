@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Home</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="navbar">
+        <h2>Student Performance System</h2>
+        <div class="nav-links">
+            <a href="{{ url_for('home') }}">Home</a>
+            {% if session.get('username') %}
+                <span>Welcome, {{ session['username'] }}</span>
+                <a href="{{ url_for('logout') }}">Logout</a>
+            {% else %}
+                <a href="{{ url_for('login') }}">Login</a>
+                <a href="{{ url_for('register') }}">Register</a>
+            {% endif %}
+        </div>
+    </div>
+
+    <div class="container">
+        <h1>Welcome to the Student Performance Prediction System</h1>
+        <p>This platform helps predict a student's academic performance using attendance and internal marks.</p>
+
+        <h2>Key Features</h2>
+        <ul>
+            <li>Admin-controlled result access</li>
+            <li>Student self-registration and login</li>
+            <li>Performance prediction using machine learning</li>
+            <li>Secure and user-friendly interface</li>
+        </ul>
+
+        <div class="card-grid">
+            <div class="card">
+                <h3>Predict Performance</h3>
+                <p>Input attendance and internal marks to see predicted final results.</p>
+                <a href="#">Start Prediction</a>
+            </div>
+            <div class="card">
+                <h3>Manage Students</h3>
+                <p>Admins can view, edit, or delete student records and predictions.</p>
+                <a href="#">Go to Dashboard</a>
+            </div>
+            <div class="card">
+                <h3>Help & Support</h3>
+                <p>Need assistance? Contact support or view help documentation.</p>
+                <a href="#">Get Help</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

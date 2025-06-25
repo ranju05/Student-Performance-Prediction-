@@ -1,0 +1,114 @@
+/* General styles */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f3f7fb;
+  color: #333;
+}
+
+/* Centered container */
+.container {
+  max-width: 500px;
+  margin: 50px auto;
+  padding: 30px;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Headings */
+h1, h2 {
+  text-align: center;
+  color: #004080;
+}
+
+/* Form styling */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+label {
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+
+input[type="number"] {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 1rem;
+}
+
+button {
+  background-color: #007bff;
+  color: white;
+  padding: 12px;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  margin-top: 50px;
+  font-size: 0.9rem;
+  color: #777;
+}
+
+/*home page*/
+.navbar {
+    background-color: #007bff;
+    color: white;
+    padding: 15px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbar h2 {
+    margin: 0;
+    font-size: 22px;
+}
+
+.nav-links a {
+    color: white;
+    margin-left: 15px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.nav-links a:hover {
+    text-decoration: underline;
+}
+
+.nav-links span {
+    margin-left: 15px;
+    font-weight: normal;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+th, td {
+    text-align: left;
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+}
+
+th {
+    background-color: #007bff;
+    color: white;
+}

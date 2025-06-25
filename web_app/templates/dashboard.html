@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="navbar">
+        <h2>Admin Dashboard</h2>
+        <div class="nav-links">
+            <a href="{{ url_for('home') }}">Home</a>
+            <a href="{{ url_for('logout') }}">Logout</a>
+        </div>
+    </div>
+
+    <div class="container">
+        <h1>Registered Students</h1>
+        {% if users %}
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Username</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for user in users %}
+                    <tr>
+                        <td>{{ user[0] }}</td>
+                        <td>{{ user[1] }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <p>No users found.</p>
+        {% endif %}
+
+        <h1 style="margin-top: 40px;">Prediction Records</h1>
+        {% if predictions %}
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Username</th>
+                        <th>Attendance (%)</th>
+                        <th>Internal Marks (%)</th>
+                        <th>Prediction (%)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for p in predictions %}
+                    <tr>
+                        <td>{{ p[0] }}</td>
+                        <td>{{ p[1] }}</td>
+                        <td>{{ p[2] }}</td>
+                        <td>{{ p[3] }}</td>
+                        <td>{{ p[4] }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <p>No prediction data found.</p>
+        {% endif %}
+    </div>
+</body>
+</html>
