@@ -3,6 +3,7 @@ import psycopg2, os
 import pickle
 import bcrypt
 import numpy as np
+from werkzeug.security import check_password_hash
 from database import connect
 import student_data  # optional: assumed helper module
 
@@ -124,6 +125,36 @@ def dashboard():
     conn.close()
 
     return render_template('dashboard.html', users=users, predictions=predictions)
+
+
+@app.route('/admin/login', methods=['GET', 'POST'])
+def admin_login():
+    if request.method == 'POST':
+        if request.is_json:
+            data = request.get_json()
+            username = data.get('username')
+            password = data.get('password')
+        else:
+            username = request.form.get('username')
+            password = request.form.get('password')
+
+        conn = connect()
+        cur = conn.cursor()
+        cur.execute("SELECT password FROM admins WHERE username = %s", (username,))
+        result = cur.fetchone()
+        cur.close()
+        conn.close()
+
+        if result and check_password_hash(result[0], password):
+            session['admin_logged_in'] = True
+            session['admin_username'] = username
+            return jsonify({"message": "Admin login successful!"}) if request.is_json else redirect(url_for('admin_dashboard'))
+        else:
+            message = "Invalid admin credentials"
+            return jsonify({"error": message}), 401 if request.is_json else flash(message) or redirect(url_for('admin_login'))
+
+    return render_template('admin_login.html')
+
 
 
 if __name__ == '__main__':
