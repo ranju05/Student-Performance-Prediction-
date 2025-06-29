@@ -1,22 +1,36 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Login</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <meta charset="UTF-8" />
+  <title>Student Login</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-    <div class="container">
-        <h1>Student Login</h1>
-        <form method="POST">
-            <label for="username">Username:</label>
-            <input type="text" name="username" required>
 
-            <label for="password">Password:</label>
-            <input type="password" name="password" required>
+  <div class="login-container">
+    <h2>Student Login</h2>
+    <form id="loginForm">
+      <label for="email">Email</label>
+      <input type="email" name="email" required>
 
-            <button type="submit">Login</button>
-        </form>
-        <p>Don't have an account? <a href="{{ url_for('register') }}">Register</a></p>
-    </div>
+      <label for="password">Password</label>
+      <input type="password" name="password" required>
+
+      <div id="loginError" class="error-msg"></div>
+
+      <button type="submit">Login</button>
+
+      <p class="link-text">
+        <a href="{{ url_for('register') }}">Don't have an account? Register</a>
+      </p>
+      <p class="link-text">
+        <a href="{{ url_for('home') }}">&larr; Back to Home</a>
+      </p>
+    </form>
+  </div>
+
+  <script src="{{ url_for('static', filename='js/login.js') }}"></script>
+
 </body>
 </html>

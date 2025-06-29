@@ -33,6 +33,21 @@ def create_tables():
         );
     """)
 
+
+
+    # Add this inside the create_tables() function in schema.py
+
+    cur.execute("""
+        CREATE TABLE IF NOT EXISTS predictions (
+            id SERIAL PRIMARY KEY,
+            user_id INTEGER REFERENCES students(id) ON DELETE CASCADE,
+            attendance FLOAT CHECK (attendance >= 0 AND attendance <= 100),
+            internal_marks FLOAT CHECK (internal_marks >= 0 AND internal_marks <= 100),
+            prediction FLOAT,
+            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+        );
+    """)
+
     # Same CREATE TABLE statements here...
 
     conn.commit()

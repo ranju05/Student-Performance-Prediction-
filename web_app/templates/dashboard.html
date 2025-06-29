@@ -3,6 +3,19 @@
 <head>
     <title>Admin Dashboard</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script>
+        function deleteUser(id) {
+            fetch(`/admin/delete_user/${id}`, { method: 'DELETE' })
+                .then(res => res.json())
+                .then(data => location.reload());
+        }
+
+        function deletePrediction(id) {
+            fetch(`/admin/delete_prediction/${id}`, { method: 'DELETE' })
+                .then(res => res.json())
+                .then(data => location.reload());
+        }
+    </script>
 </head>
 <body>
     <div class="navbar">
@@ -14,55 +27,72 @@
     </div>
 
     <div class="container">
-        <h1>Registered Students</h1>
-        {% if users %}
-            <table>
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Username</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for user in users %}
-                    <tr>
-                        <td>{{ user[0] }}</td>
-                        <td>{{ user[1] }}</td>
-                    </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
-        {% else %}
-            <p>No users found.</p>
-        {% endif %}
+        <h1>All Students</h1>
+        <table border="1">
+            <tr>
+                <th>ID</th>
+                <th>Username</th>
+                <th>Action</th>
+            </tr>
+            {% for user in users %}
+            <tr>
+                <td>{{ user[0] }}</td>
+                <td>{{ user[1] }}</td>
+                <td><button onclick="deleteUser('{{ user[0] }}')">Delete</button>
+</td>
+            </tr>
+            {% endfor %}
+        </table>
 
-        <h1 style="margin-top: 40px;">Prediction Records</h1>
-        {% if predictions %}
-            <table>
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Username</th>
-                        <th>Attendance (%)</th>
-                        <th>Internal Marks (%)</th>
-                        <th>Prediction (%)</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for p in predictions %}
-                    <tr>
-                        <td>{{ p[0] }}</td>
-                        <td>{{ p[1] }}</td>
-                        <td>{{ p[2] }}</td>
-                        <td>{{ p[3] }}</td>
-                        <td>{{ p[4] }}</td>
-                    </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
-        {% else %}
-            <p>No prediction data found.</p>
-        {% endif %}
+        <h1>Predictions</h1>
+        <table border="1">
+            <tr>
+                <th>ID</th>
+                <th>Username</th>
+                <th>Attendance</th>
+                <th>Internal Marks</th>
+                <th>Prediction</th>
+                <th>Action</th>
+            </tr>
+            {% for row in predictions %}
+            <tr>
+                <td>{{ row[0] }}</td>
+                <td>{{ row[1] }}</td>
+                <td>{{ row[2] }}%</td>
+                <td>{{ row[3] }}%</td>
+                <td>{{ row[4] }}%</td>
+                <td><button onclick="deleteUser('{{ user[0] }}')">Delete</button>
+</td>
+            </tr>
+            {% endfor %}
+        </table>
     </div>
+    <script>
+    function deleteUser(id) {
+        fetch(`/admin/delete_user/${id}`, {
+            method: 'DELETE'
+        })
+        .then(response => response.json())
+        .then(data => {
+            alert(data.message);
+            location.reload();
+        })
+        .catch(error => console.error('Error:', error));
+    }
+
+    function deletePrediction(id) {
+        fetch(`/admin/delete_prediction/${id}`, {
+            method: 'DELETE'
+        })
+        .then(response => response.json())
+        .then(data => {
+            alert(data.message);
+            location.reload();
+        })
+        .catch(error => console.error('Error:', error));
+    }
+</script>
+
+
 </body>
 </html>

@@ -1,26 +1,33 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Student Performance Prediction</title>
-<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>Predict Performance</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-  <div class="container">
-    <h2>Student Performance Prediction</h2>
+    <div class="navbar">
+        <h2>Student Performance System</h2>
+        <div class="nav-links">
+            <a href="{{ url_for('home') }}">Home</a>
+            <a href="{{ url_for('logout') }}">Logout</a>
+        </div>
+    </div>
 
-    <form action="http://localhost:5000/predict" method="POST">
-      <label>Attendance (%)</label>
-      <input type="number" name="attendance" required />
+    <div class="container">
+        <h1>Predict Your Performance</h1>
+        <form method="POST" action="{{ url_for('predict') }}">
+            <label>Attendance (%)</label>
+            <input type="number" name="attendance" step="0.1" min="0" max="100" required>
 
-      <label>Internal Marks (%)</label>
-      <input type="number" name="internals" required />
+            <label>Internal Marks (%)</label>
+            <input type="number" name="internal_marks" step="0.1" min="0" max="100" required>
 
-      <button type="submit">Predict</button>
-    </form>
-  </div>
+            <button type="submit">Predict</button>
+        </form>
 
-  <footer>
-    &copy; 2025 Student Predictor System
-  </footer>
+        {% if prediction is not none %}
+            <h3>Predicted Score: {{ prediction }}%</h3>
+        {% endif %}
+    </div>
 </body>
 </html>

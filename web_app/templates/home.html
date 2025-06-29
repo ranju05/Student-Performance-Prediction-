@@ -15,6 +15,7 @@
             {% else %}
                 <a href="{{ url_for('login') }}">Login</a>
                 <a href="{{ url_for('register') }}">Register</a>
+                <a href="{{ url_for('admin_login')}}">Admin Login</a>
             {% endif %}
         </div>
     </div>
@@ -35,12 +36,12 @@
             <div class="card">
                 <h3>Predict Performance</h3>
                 <p>Input attendance and internal marks to see predicted final results.</p>
-                <a href="#">Start Prediction</a>
+                <a href="{{ url_for('predict') }}">Start Prediction</a>
             </div>
             <div class="card">
                 <h3>Manage Students</h3>
                 <p>Admins can view, edit, or delete student records and predictions.</p>
-                <a href="#">Go to Dashboard</a>
+                <a href="{{ url_for('dashboard') }}">Go to Dashboard</a>
             </div>
             <div class="card">
                 <h3>Help & Support</h3>

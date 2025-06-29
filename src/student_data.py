@@ -12,7 +12,7 @@ def register_student(name, email, username, password, semester, roll_no, address
         conn.commit()
         return True
     except Exception as e:
-        print("❌ Error registering student:", e)
+        print(" Error registering student:", e)
         return False
     finally:
         cur.close()
