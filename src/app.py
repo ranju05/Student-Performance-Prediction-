@@ -27,11 +27,11 @@ def home():
 
 # ========== Login ==========
 @app.route('/login', methods=['GET'])
-def login_page():
+def login():
     return render_template('login.html')
 
-@app.route('/login', methods=['POST'])
-def login():
+@app.route('/api/login', methods=['POST'])
+def api_login():
     data = request.get_json()
     email = data.get('email')
     password = data.get('password')
@@ -99,7 +99,8 @@ def register():
     conn.close()
     print("Student inserted successfully.")   # ✅ Debug
 
-    return jsonify({"message": "Student registered successfully!"})
+    flash("Student registered successfully! Please log in.")
+    return redirect(url_for('login'))
 
 
 # ========== Logout ==========
@@ -117,7 +118,7 @@ def predict():
         attendance = float(request.form['attendance'])
         internal_marks = float(request.form['internal_marks'])
         input_data = np.array([[attendance, internal_marks]])
-        prediction = round(model.predict(input_data)[0], 2)
+        prediction =float(round(model.predict(input_data)[0], 2))
 
         conn = connect()
         cur = conn.cursor()

@@ -3,19 +3,6 @@
 <head>
     <title>Admin Dashboard</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-    <script>
-        function deleteUser(id) {
-            fetch(`/admin/delete_user/${id}`, { method: 'DELETE' })
-                .then(res => res.json())
-                .then(data => location.reload());
-        }
-
-        function deletePrediction(id) {
-            fetch(`/admin/delete_prediction/${id}`, { method: 'DELETE' })
-                .then(res => res.json())
-                .then(data => location.reload());
-        }
-    </script>
 </head>
 <body>
     <div class="navbar">
@@ -38,8 +25,7 @@
             <tr>
                 <td>{{ user[0] }}</td>
                 <td>{{ user[1] }}</td>
-                <td><button onclick="deleteUser('{{ user[0] }}')">Delete</button>
-</td>
+                <td><button onclick="deleteUser('{{ user[0] }}')">Delete</button></td>
             </tr>
             {% endfor %}
         </table>
@@ -61,38 +47,32 @@
                 <td>{{ row[2] }}%</td>
                 <td>{{ row[3] }}%</td>
                 <td>{{ row[4] }}%</td>
-                <td><button onclick="deleteUser('{{ user[0] }}')">Delete</button>
-</td>
+                <td><button onclick="deletePrediction('{{ row[0] }}')">Delete</button></td>
             </tr>
             {% endfor %}
         </table>
     </div>
+
     <script>
-    function deleteUser(id) {
-        fetch(`/admin/delete_user/${id}`, {
-            method: 'DELETE'
-        })
-        .then(response => response.json())
-        .then(data => {
-            alert(data.message);
-            location.reload();
-        })
-        .catch(error => console.error('Error:', error));
-    }
+        function deleteUser(id) {
+            fetch(`/admin/delete_user/${id}`, { method: 'DELETE' })
+                .then(response => response.json())
+                .then(data => {
+                    alert(data.message);
+                    location.reload();
+                })
+                .catch(error => console.error('Error:', error));
+        }
 
-    function deletePrediction(id) {
-        fetch(`/admin/delete_prediction/${id}`, {
-            method: 'DELETE'
-        })
-        .then(response => response.json())
-        .then(data => {
-            alert(data.message);
-            location.reload();
-        })
-        .catch(error => console.error('Error:', error));
-    }
-</script>
-
-
+        function deletePrediction(id) {
+            fetch(`/admin/delete_prediction/${id}`, { method: 'DELETE' })
+                .then(response => response.json())
+                .then(data => {
+                    alert(data.message);
+                    location.reload();
+                })
+                .catch(error => console.error('Error:', error));
+        }
+    </script>
 </body>
 </html>

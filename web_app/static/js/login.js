@@ -17,6 +17,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const result = await response.json();
 
       if (response.ok) {
+        // Redirect to predict page on successful login
         window.location.href = "/predict";
       } else {
         errorDisplay.textContent = result.message || 'Login failed.';
