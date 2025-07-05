@@ -1,328 +1,328 @@
-/* =================== BASE =================== */
+/* Reset and Base */
 * {
-    box-sizing: border-box;
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
+}
+body {
+    font-family: 'Segoe UI', Tahoma, sans-serif;
+    background-color: #6fa8ff; /* 🔵 Change background color here */
+    color: #333; /* 🔵 Change base text color here */
+    line-height: 1.6;
+}
+h1, h2, h3 {
+    color: #2e3b55; /* 🔵 Change heading color here */
+    margin-bottom: 15px;
+}
+
+/* Buttons */
+.btn-primary {
+    background-color: #48b868; /* 🔵 Change primary button color here */
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 6px;
+    text-decoration: none;
+    display: inline-block;
+    transition: background-color 0.3s;
+}
+.btn-primary:hover {
+    background-color: #0056b3; /* 🔵 Change hover color */
+}
+.btn-secondary {
+    background-color: #6c757d; /* 🔵 Change secondary button color */
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 6px;
+    text-decoration: none;
+    display: inline-block;
+    transition: background-color 0.3s;
+}
+.btn-secondary:hover {
+    background-color: #5a6268; /* 🔵 Change hover color */
+}
+
+/* Hero Section */
+.hero {
+    background: url('../static/images/hero-bg.jpg') center/cover no-repeat;
+    height: 60vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+.overlay {
+    background-color: rgba(0, 0, 0, 0.5); /* 🔵 Change overlay color here */
+    color: white;
+    padding: 30px;
+    text-align: center;
+    border-radius: 12px;
+}
+
+/* Features Section */
+.features {
+    display: flex;
+    justify-content: space-around;
+    padding: 40px;
+    background-color: #ffffff; /* 🔵 Change background if needed */
+}
+.feature {
+    max-width: 300px;
+    text-align: center;
+}
+
+/* CTA Section */
+.cta {
+    text-align: center;
+    padding: 40px;
+    background-color: #007bff; /* 🔵 Change CTA background color */
+    color: white;
+}
+
+/* Footer */
+.footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #2e3b55; /* 🔵 Change footer background */
+    color: white;
+}
+
+/* Navbar */
+.navbar {
+    background-color: #ffffff; /* 🔵 Change navbar background */
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.navbar h2 {
+    color: #007bff; /* 🔵 Change navbar heading color */
+}
+.nav-links a {
+    margin-left: 10px;
+    color: #007bff; /* 🔵 Change navbar link color */
+    text-decoration: none;
+}
+.nav-links a:hover {
+    text-decoration: underline;
+}
+
+/* Table Styling */
+table {
+    width: 90%;
+    margin: 20px auto;
+    border-collapse: collapse;
+    background-color: white;
+}
+table th, table td {
+    padding: 12px;
+    border: 1px solid #ddd;
+    text-align: center;
+}
+table th {
+    background-color: #007bff; /* 🔵 Change table header background */
+    color: white;
+}
+
+/* Sidebar for dashboard */
+.sidebar {
+    background-color: #2e3b55; /* 🔵 Change sidebar background */
+    color: white;
+    padding: 20px;
+    width: 220px;
+    min-height: 100vh;
+}
+.sidebar a {
+    display: block;
+    color: white;
+    text-decoration: none;
+    padding: 10px 0;
+}
+.sidebar a.active, .sidebar a:hover {
+    background-color: #007bff; /* 🔵 Change active/hover sidebar link */
+}
+.main {
+    padding: 20px;
+    flex-grow: 1;
+}
+.container {
+    display: flex;
+}
+
+
+
+
+/* =================== RESET =================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 html, body {
     height: 100%;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #f4f6f9;
-    color: #333;
-    line-height: 1.6;
+    font-family: 'Segoe UI', Tahoma, sans-serif;
+    background-color: #f4f6f9; /* 🔵 Change background here */
+    color: #333; /* 🔵 Base text color */
 }
 
-h1, h2, h3 {
-    font-weight: 600;
-    color: #2e3b55;
-}
-
-a {
-    text-decoration: none;
-    color: inherit;
-    cursor: pointer;
-}
-
-/* =================== NAVBAR =================== */
-nav {
-    text-align: center;
-    background-color: #ffffff;
-    padding: 15px 20px;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
-}
-
-nav a {
-    color: #007bff;
-    margin: 0 8px;
-    font-weight: 500;
-    padding: 8px 12px;
-    border-radius: 5px;
-    transition: background-color 0.2s, color 0.2s;
-}
-
-nav a:hover {
-    background-color: #007bff;
-    color: #ffffff;
-}
-
-hr {
-    border: none;
-    border-top: 1px solid #ddd;
-    margin: 20px 0;
-}
-
-/* =================== BUTTONS =================== */
-button, .btn-primary, .btn-secondary {
-    display: inline-block;
-    padding: 10px 16px;
-    border: none;
-    border-radius: 5px;
-    font-weight: 500;
-    cursor: pointer;
-    transition: background-color 0.3s, transform 0.2s;
-    text-align: center;
-    font-size: 15px;
-}
-
-button, .btn-primary {
-    background-color: #007bff;
-    color: #ffffff;
-}
-
-button:hover, .btn-primary:hover {
-    background-color: #0056b3;
-    transform: translateY(-2px);
-}
-
-.btn-secondary {
-    background-color: #6c757d;
-    color: #ffffff;
-}
-
-.btn-secondary:hover {
-    background-color: #565e64;
-    transform: translateY(-2px);
-}
-
-button:disabled {
-    background-color: #cccccc;
-    cursor: not-allowed;
-}
-
-/* =================== CONTAINERS =================== */
-.container {
-    max-width: 1100px;
-    margin: 40px auto;
-    background: #ffffff;
-    padding: 30px;
-    border-radius: 10px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-    text-align: center;
-}
-
-.container h1 {
-    font-size: 24px;
-    color: #007bff;
-    margin-bottom: 20px;
-}
-
-p {
-    max-width: 600px;
-    margin: 15px auto;
-    padding: 15px 20px;
-    background: #ffffff;
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
-    font-size: 16px;
-    text-align: center;
-}
-
-/* =================== TABLES =================== */
-table {
-    width: 100%;
-    border-collapse: collapse;
-    background: #ffffff;
-    border-radius: 8px;
-    overflow: hidden;
-    margin: 20px 0;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-}
-
-table th, table td {
-    padding: 12px 15px;
-    text-align: center;
-    border-bottom: 1px solid #e0e0e0;
-}
-
-table th {
-    background-color: #007bff;
-    color: white;
-    font-weight: 600;
-}
-
-table tr:nth-child(even) {
-    background-color: #f8f9fa;
-}
-
-table tr:hover {
-    background-color: #eef6ff;
-    transition: background-color 0.2s ease;
-}
-
-/* =================== FORMS =================== */
-.login-container, .form-container {
+/* =================== LOGIN & REGISTER CONTAINER =================== */
+.login-container {
+    width: 90%;
     max-width: 400px;
     margin: 60px auto;
     background: #ffffff;
-    padding: 30px;
-    border-radius: 10px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    padding: 30px 25px;
+    border-radius: 12px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.08);
+    text-align: center;
 }
 
-.login-container h2, .form-container h2 {
-    text-align: center;
-    color: #007bff;
+.login-container h2 {
+    color: #2e3b55; /* 🔵 Title color */
     margin-bottom: 20px;
 }
 
+/* =================== FORM STYLING =================== */
 form {
     display: flex;
     flex-direction: column;
-    gap: 12px;
     text-align: left;
 }
 
-form label {
-    font-weight: 500;
+label {
+    margin-top: 12px;
+    margin-bottom: 5px;
+    font-weight: 600;
+    color: #2e3b55; /* 🔵 Label color */
 }
 
-form input[type="text"],
-form input[type="email"],
-form input[type="password"],
-form input[type="tel"],
-form input[type="number"] {
-    padding: 10px 12px;
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="tel"] {
+    padding: 10px;
+    font-size: 16px;
     border: 1px solid #ccc;
     border-radius: 6px;
-    font-size: 15px;
-    transition: border-color 0.3s;
+    transition: border-color 0.2s;
 }
 
-form input:focus {
-    border-color: #007bff;
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus,
+input[type="tel"]:focus {
+    border-color: #007bff; /* 🔵 Focus border color */
+    outline: none;
 }
 
 .error-msg {
     color: red;
-    font-size: 14px;
-    text-align: center;
+    font-size: 0.9rem;
     margin-top: 10px;
 }
 
+/* =================== BUTTON =================== */
+button[type="submit"] {
+    margin-top: 20px;
+    background-color: #007bff; /* 🔵 Button background */
+    color: #ffffff;
+    padding: 12px;
+    font-size: 16px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button[type="submit"]:hover {
+    background-color: #0056b3; /* 🔵 Button hover */
+}
+
+/* =================== LINKS =================== */
 .link-text {
-    text-align: center;
     margin-top: 15px;
-    font-size: 14px;
+    text-align: center;
 }
 
 .link-text a {
-    color: #007bff;
+    color: #007bff; /* 🔵 Link color */
+    text-decoration: none;
+    font-size: 0.95rem;
 }
 
 .link-text a:hover {
     text-decoration: underline;
 }
 
-/* =================== HERO =================== */
-.hero {
-    position: relative;
-    background: url('https://source.unsplash.com/1600x600/?education,students') center/cover no-repeat;
-    color: white;
-    text-align: center;
-    padding: 100px 20px;
-}
 
-.hero .overlay {
-    background-color: rgba(0, 0, 0, 0.4);
-    padding: 50px 20px;
-    border-radius: 12px;
-    display: inline-block;
-}
 
-.hero h1 {
-    font-size: 32px;
-    margin-bottom: 15px;
-}
 
-.hero p {
-    font-size: 18px;
-    max-width: 600px;
-    margin: 0 auto 20px;
-}
-
-.hero-buttons {
-    display: flex;
-    gap: 15px;
-    justify-content: center;
-    flex-wrap: wrap;
-}
-
-/* =================== FEATURES =================== */
-.features {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 20px;
-    padding: 50px 20px;
-    background-color: #f8f9fa;
-}
-
-.feature {
+/* =================== PREDICT PAGE =================== */
+.predict-container {
+    width: 90%;
+    max-width: 500px;
+    margin: 40px auto;
     background: #ffffff;
-    padding: 25px;
-    border-radius: 10px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-    max-width: 280px;
+    padding: 30px 25px;
+    border-radius: 12px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.08);
     text-align: center;
-    transition: transform 0.2s, box-shadow 0.2s;
 }
 
-.feature:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+.predict-container h1 {
+    color: #2e3b55;
+    margin-bottom: 20px;
 }
 
-.feature h2 {
+.predict-form {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+
+.predict-form label {
+    margin-top: 12px;
+    margin-bottom: 5px;
+    font-weight: 600;
+    color: #2e3b55;
+}
+
+.predict-form input[type="number"] {
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    transition: border-color 0.2s;
+}
+
+.predict-form input[type="number"]:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+.predict-form button[type="submit"] {
+    margin-top: 20px;
+    background-color: #007bff;
+    color: #ffffff;
+    padding: 12px;
+    font-size: 16px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.predict-form button[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+.prediction-result {
+    margin-top: 20px;
+    background-color: #f0f8ff;
+    padding: 15px;
+    border-radius: 8px;
     color: #007bff;
-    margin-bottom: 12px;
-}
-
-/* =================== FOOTER =================== */
-.footer {
-    background-color: #343a40;
-    color: #ccc;
-    text-align: center;
-    padding: 15px 20px;
-    font-size: 14px;
-}
-
-/* =================== RESPONSIVE =================== */
-@media (max-width: 768px) {
-    .container {
-        margin: 20px;
-        padding: 20px;
-    }
-
-    .features {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .hero h1 {
-        font-size: 26px;
-    }
-
-    .hero p {
-        font-size: 16px;
-    }
-
-    .login-container, .form-container {
-        margin: 40px auto;
-        padding: 25px 20px;
-    }
-}
-
-@media (max-width: 480px) {
-    .hero h1 {
-        font-size: 22px;
-    }
-
-    .hero p {
-        font-size: 14px;
-    }
-
-    .login-container, .form-container {
-        padding: 20px 15px;
-    }
+    font-weight: 600;
 }

@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Student Dashboard</title>
-    <link rel="stylesheet" href="/static/style.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
     <div class="container">
@@ -13,37 +14,54 @@
             <nav>
                 <a href="/dashboard" class="active">Dashboard</a>
                 <a href="/predict">Predict Performance</a>
+                <a href="home">Home</a>
                 <a href="/logout">Logout</a>
             </nav>
         </aside>
+
         <main class="main">
             <h1>Welcome, {{ session.username }}</h1>
-            <h2>Your Predictions</h2>
+            <h2>Your Prediction Results</h2>
+
             {% if predictions %}
-            <table>
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Attendance (%)</th>
-                        <th>Internal Marks (%)</th>
-                        <th>Predicted Result</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for pred in predictions %}
-                    <tr>
-                        <td>{{ pred[0] }}</td>
-                        <td>{{ pred[1] }}</td>
-                        <td>{{ pred[2] }}</td>
-                        <td>{{ pred[3] }}</td>
-                    </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
+                <canvas id="performanceChart" height="100"></canvas>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Attendance (%)</th>
+                            <th>Internal Marks (%)</th>
+                            <th>Predicted Result</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for pred in predictions %}
+                        <tr>
+                            <td>{{ pred[0] }}</td>
+                            <td>{{ pred[1] }}</td>
+                            <td>{{ pred[2] }}</td>
+                            <td>{{ pred[3] }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
             {% else %}
-            <p>No predictions available yet. Please use the 'Predict Performance' option to generate your predictions.</p>
+                <p>No predictions available yet. Please use the 'Predict Performance' option to generate your predictions.</p>
             {% endif %}
         </main>
     </div>
+
+{% if predictions %}
+<script>
+        const attendanceData = {{ predictions | map(attribute=1) | list | tojson | safe }};
+        const marksData = {{ predictions | map(attribute=2) | list | tojson | safe }};
+        const predictionData = {{ predictions | map(attribute=3) | list | tojson | safe }};
+        const labels = {{ predictions | map(attribute=0) | list | tojson | safe }};
+</script>
+
+<script src="{{ url_for('static', filename='js/student_dashboard.js') }}"></script>
+{% endif %}
+
 </body>
 </html>

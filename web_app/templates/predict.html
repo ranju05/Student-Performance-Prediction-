@@ -1,7 +1,9 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8" />
     <title>Predict Performance</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
@@ -13,20 +15,22 @@
         </div>
     </div>
 
-    <div class="container">
+    <div class="predict-container">
         <h1>Predict Your Performance</h1>
-        <form method="POST" action="{{ url_for('predict') }}">
-            <label>Attendance (%)</label>
-            <input type="number" name="attendance" step="0.1" min="0" max="100" required>
+        <form method="POST" action="{{ url_for('predict') }}" class="predict-form">
+            <label for="attendance">Attendance (%)</label>
+            <input type="number" id="attendance" name="attendance" step="0.1" min="0" max="100" required>
 
-            <label>Internal Marks (%)</label>
-            <input type="number" name="internal_marks" step="0.1" min="0" max="100" required>
+            <label for="internal_marks">Internal Marks (%)</label>
+            <input type="number" id="internal_marks" name="internal_marks" step="0.1" min="0" max="100" required>
 
             <button type="submit">Predict</button>
         </form>
 
         {% if prediction is not none %}
-            <h3>Predicted Score: {{ prediction }}%</h3>
+            <div class="prediction-result">
+                <h3>🎯 Predicted Score: {{ prediction }}%</h3>
+            </div>
         {% endif %}
     </div>
 </body>
