@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <aside class="sidebar">
+            <h2>Admin</h2>
+            <nav>
+                <a href="{{ url_for('admin_dashboard', section='overview') }}" {% if section == 'overview' %}class="active"{% endif %}>📊 Overview</a>
+                <a href="{{ url_for('admin_dashboard', section='manage_students') }}" {% if section == 'manage_students' %}class="active"{% endif %}>👥 Manage Students</a>
+                <a href="{{ url_for('admin_dashboard', section='predict_results') }}" {% if section == 'predict_results' %}class="active"{% endif %}>🤖 Predict Results</a>
+                <a href="{{ url_for('admin_dashboard', section='view_export_results') }}" {% if section == 'view_export_results' %}class="active"{% endif %}>📂 View & Export Results</a>
+                <a href="{{ url_for('admin_dashboard', section='profile') }}" {% if section == 'profile' %}class="active"{% endif %}>🧑‍💼 Profile</a>
+                <a href="{{ url_for('admin_logout') }}">🚪 Logout</a>
+                <a href="{{url_for('home')}}">Home</a>
+            </nav>
+        </aside>
+
+        <main class="main">
+            <h1>Admin Dashboard</h1>
+
+            {% if section == 'overview' %}
+                <h2>📊 System Overview</h2>
+                <p>Total students: {{ total_students }}</p>
+                <p>Total predictions: {{ total_predictions }}</p>
+                <p>System usage and performance charts can be displayed here.</p>
+
+            {% elif section == 'manage_students' %}
+                <h2>👥 Manage Student Data</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Username</th>
+                            <th>Email</th>
+                            <th>Semester</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for user in users %}
+                        <tr>
+                            <td>{{ user[0] }}</td>
+                            <td>{{ user[1] }}</td>
+                            <td>{{ user[2] }}</td>
+                            <td>{{ user[3] }}</td>
+                            <td>
+                                <button onclick="deleteUser('{{ user[0] }}')">Delete</button>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+
+            {% elif section == 'predict_results' %}
+                <h2>🤖 Predict Results</h2>
+                <p>Upload a CSV file or select a student to predict results here.</p>
+                <!-- Future file upload and predict forms go here -->
+
+            {% elif section == 'view_export_results' %}
+                <h2>📂 View & Export Results</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Username</th>
+                            <th>Attendance</th>
+                            <th>Marks</th>
+                            <th>Prediction</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for pred in predictions %}
+                        <tr>
+                            <td>{{ pred[0] }}</td>
+                            <td>{{ pred[1] }}</td>
+                            <td>{{ pred[2] }}</td>
+                            <td>{{ pred[3] }}</td>
+                            <td>{{ pred[4] }}</td>
+                            <td>
+                                <button onclick="deletePrediction('{{ pred[0] }}')">Delete</button>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                <button onclick="exportCSV()">Export to CSV</button>
+
+            {% elif section == 'profile' %}
+                <h2>🧑‍💼 Manage Profile</h2>
+                <p>Update admin profile details and change password here.</p>
+                <!-- Profile update form goes here -->
+
+            {% else %}
+                <p>Select a section from the navigation to begin managing the system.</p>
+            {% endif %}
+        </main>
+    </div>
+
+    <script>
+        function deleteUser(userId) {
+            if (confirm("Are you sure you want to delete this user?")) {
+                fetch(`/admin/delete_user/${userId}`, { method: 'DELETE' })
+                .then(response => response.json())
+                .then(data => {
+                    alert(data.message);
+                    location.reload();
+                });
+            }
+        }
+
+        function deletePrediction(predictionId) {
+            if (confirm("Are you sure you want to delete this prediction?")) {
+                fetch(`/admin/delete_prediction/${predictionId}`, { method: 'DELETE' })
+                .then(response => response.json())
+                .then(data => {
+                    alert(data.message);
+                    location.reload();
+                });
+            }
+        }
+
+        function exportCSV() {
+            window.location.href = "/admin/export_predictions_csv";
+        }
+    </script>
+</body>
+</html>

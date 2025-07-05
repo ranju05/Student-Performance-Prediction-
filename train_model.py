@@ -9,5 +9,5 @@ model = LinearRegression()
 model.fit(X, y)
 
 # Save the model
-with open('models/student_model.pkl', 'wb') as f:
+with open('src/models/student_model.pkl', 'wb') as f:
     pickle.dump(model, f)

@@ -1,30 +1,21 @@
-document.addEventListener("DOMContentLoaded", () => {
-  const form = document.getElementById('loginForm');
-  const errorDisplay = document.getElementById('loginError');
-
-  form.addEventListener('submit', async e => {
+document.getElementById('loginForm').addEventListener('submit', async function(e) {
     e.preventDefault();
-    const formData = new FormData(form);
-    const data = Object.fromEntries(formData.entries());
 
-    try {
-      const response = await fetch('/api/login', {
+    const email = document.querySelector('input[name="email"]').value;
+    const password = document.querySelector('input[name="password"]').value;
+
+    const response = await fetch('/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data)
-      });
+        body: JSON.stringify({ email, password })
+    });
 
-      const result = await response.json();
+    const data = await response.json();
 
-      if (response.ok) {
-        // Redirect to predict page on successful login
-        window.location.href = "/predict";
-      } else {
-        errorDisplay.textContent = result.message || 'Login failed.';
-      }
-    } catch (err) {
-      console.error('Login error:', err);
-      errorDisplay.textContent = 'Something went wrong.';
+    if (response.ok) {
+        // ✅ Redirect after successful login
+        window.location.href = '/dashboard';
+    } else {
+        document.getElementById('loginError').textContent = data.message || 'Login failed.';
     }
-  });
 });

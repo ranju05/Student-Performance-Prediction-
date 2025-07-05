@@ -1,54 +1,58 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Home</title>
+    <meta charset="UTF-8" />
+    <title>Student Performance Prediction System</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-    <div class="navbar">
-        <h2>Student Performance System</h2>
-        <div class="nav-links">
-            <a href="{{ url_for('home') }}">Home</a>
-            {% if session.get('username') %}
-                <span>Welcome, {{ session['username'] }}</span>
-                <a href="{{ url_for('logout') }}">Logout</a>
+
+    <header class="hero">
+        <div class="overlay">
+            <h1>Student Performance Prediction System</h1>
+            <p>Predict your academic performance using AI-driven insights.</p>
+            {% if not session.get('username') %}
+            <div class="hero-buttons">
+                <a href="{{ url_for('login') }}" class="btn-primary">Login</a>
+                <a href="{{ url_for('register') }}" class="btn-secondary">Register</a>
+                <a href="{{ url_for('admin_login') }}" class="btn-secondary">Admin Login</a>
+            </div>
             {% else %}
-                <a href="{{ url_for('login') }}">Login</a>
-                <a href="{{ url_for('register') }}">Register</a>
-                <a href="{{ url_for('admin_login')}}">Admin Login</a>
+            <div class="hero-buttons">
+                <span>Welcome, {{ session['username'] }}</span>
+                <a href="{{url_for('dashboard')}}"class="btn-primary">Dashboard</a>
+                <a href="{{ url_for('logout') }}" class="btn-secondary">Logout</a>
+                <a href="{{ url_for('predict') }}" class="btn-primary">Start Prediction</a>
+            </div>
             {% endif %}
         </div>
-    </div>
+    </header>
 
-    <div class="container">
-        <h1>Welcome to the Student Performance Prediction System</h1>
-        <p>This platform helps predict a student's academic performance using attendance and internal marks.</p>
-
-        <h2>Key Features</h2>
-        <ul>
-            <li>Admin-controlled result access</li>
-            <li>Student self-registration and login</li>
-            <li>Performance prediction using machine learning</li>
-            <li>Secure and user-friendly interface</li>
-        </ul>
-
-        <div class="card-grid">
-            <div class="card">
-                <h3>Predict Performance</h3>
-                <p>Input attendance and internal marks to see predicted final results.</p>
-                <a href="{{ url_for('predict') }}">Start Prediction</a>
-            </div>
-            <div class="card">
-                <h3>Manage Students</h3>
-                <p>Admins can view, edit, or delete student records and predictions.</p>
-                <a href="{{ url_for('dashboard') }}">Go to Dashboard</a>
-            </div>
-            <div class="card">
-                <h3>Help & Support</h3>
-                <p>Need assistance? Contact support or view help documentation.</p>
-                <a href="#">Get Help</a>
-            </div>
+    <section class="features">
+        <div class="feature">
+            <h2>🔍 Accurate Predictions</h2>
+            <p>Utilizes machine learning to predict student performance based on attendance and internal marks.</p>
         </div>
-    </div>
+        <div class="feature">
+            <h2>🔐 Secure Access</h2>
+            <p>Role-based access with separate student and admin panels ensuring data security.</p>
+        </div>
+        <div class="feature">
+            <h2>📊 Easy Tracking</h2>
+            <p>Students can view their prediction history and track progress over time.</p>
+        </div>
+    </section>
+
+    <section class="cta">
+        <h2>Start Predicting Today</h2>
+        <p>Take control of your academic journey by using predictive analytics to plan and improve your performance.</p>
+        <a href="{{ url_for('predict') }}" class="btn-primary">Start Prediction</a>
+    </section>
+
+    <footer class="footer">
+        <p>&copy; 2025 Student Performance Prediction System. All rights reserved.</p>
+    </footer>
+
 </body>
 </html>

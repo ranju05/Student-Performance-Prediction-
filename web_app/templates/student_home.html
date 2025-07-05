@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Student Dashboard</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+    <div class="navbar">
+        <h2>Student Performance System</h2>
+        <div class="nav-links">
+            <span>Welcome, {{ session['username'] }}</span>
+            <a href="{{ url_for('predict') }}">Start Prediction</a>
+            <a href="{{ url_for('logout') }}">Logout</a>
+            <a href="{{url_for('student_dashboard')}}">Dashboard</a>
+        </div>
+    </div>
+
+    <div class="container">
+        <h1>Your Prediction History</h1>
+        {% if predictions %}
+        <table>
+            <tr>
+                <th>ID</th>
+                <th>Attendance (%)</th>
+                <th>Internal Marks (%)</th>
+                <th>Predicted Result (%)</th>
+            </tr>
+            {% for row in predictions %}
+            <tr>
+                <td>{{ row[0] }}</td>
+                <td>{{ row[1] }}</td>
+                <td>{{ row[2] }}</td>
+                <td>{{ row[3] }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+        {% else %}
+            <p class="info-text">You have not made any predictions yet. Click below to start.</p>
+            <a href="{{ url_for('predict') }}" class="btn-primary">Start Prediction</a>
+        {% endif %}
+    </div>
+
+</body>
+</html>

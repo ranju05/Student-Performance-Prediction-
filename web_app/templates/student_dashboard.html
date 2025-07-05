@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Dashboard</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="container">
+        <aside class="sidebar">
+            <h2>Student</h2>
+            <nav>
+                <a href="/dashboard" class="active">Dashboard</a>
+                <a href="/predict">Predict Performance</a>
+                <a href="/logout">Logout</a>
+            </nav>
+        </aside>
+        <main class="main">
+            <h1>Welcome, {{ session.username }}</h1>
+            <h2>Your Predictions</h2>
+            {% if predictions %}
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Attendance (%)</th>
+                        <th>Internal Marks (%)</th>
+                        <th>Predicted Result</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for pred in predictions %}
+                    <tr>
+                        <td>{{ pred[0] }}</td>
+                        <td>{{ pred[1] }}</td>
+                        <td>{{ pred[2] }}</td>
+                        <td>{{ pred[3] }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            {% else %}
+            <p>No predictions available yet. Please use the 'Predict Performance' option to generate your predictions.</p>
+            {% endif %}
+        </main>
+    </div>
+</body>
+</html>
